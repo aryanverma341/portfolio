@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Aryan Verma | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        :root{
+            --panel:#141414;
+            --text:#ffffff;
+            --muted:#b9b9b9;
+            --primary:#00b0e6;
+            --shadow:0 0 18px rgba(0, 180, 230, 0.35);
+            --radius:14px;
+            --speed:.35s;
+
+            /* Neon theme controls */
+            --red:#3cd1ff;
+            --blue:#29a0ff;
+            --bg-deep:#000;
+            --glow-strength:1;
+            --twinkle:.55;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        body{
+            margin:0;
+            font-family:'Poppins',sans-serif;
+            color:var(--text);
+            background: var(--bg-deep);
+            overflow-x:hidden;
+            position:relative;
+            min-height:100dvh;
+        }
+
+        /* ======= ENHANCED NEON BACKGROUND (no image) ======= */
+        .bg{position:fixed; inset:0; z-index:-5; background: radial-gradient(1000px 800px at 12% 25%, rgba(40, 248, 255, 0.3), transparent 60%), radial-gradient(1000px 800px at 85% 35%, rgba(30,140,255,.30), transparent 60%), radial-gradient(1200px 900px at 50% 120%, rgba(40, 201, 255, 0.16), transparent 70%), repeating-linear-gradient(115deg, rgba(255,60,60,.12) 0 2px, transparent 2px 90px), repeating-linear-gradient(245deg, rgba(40,160,255,.12) 0 2px, transparent 2px 90px), radial-gradient(1200px 900px at 50% -20%, rgba(0,0,0,.60), rgba(0,0,0,.88)); background-size:auto,auto,auto,220% 220%,220% 220%,auto; animation: pan1 22s linear infinite, pan2 28s linear infinite reverse; filter: saturate(130%) contrast(106%);}
+        .bg::before,.bg::after{content:""; position:absolute; inset:-20% -10%; background: linear-gradient(115deg, rgba(255,60,60,0) 0%, rgba(60, 226, 255, 0.75) 40%, rgba(255,60,60,0) 60%), linear-gradient(245deg, rgba(40,160,255,0) 0%, rgba(40,160,255,.70) 45%, rgba(40,160,255,0) 65%); mix-blend-mode: screen; filter: blur(6px) drop-shadow(0 0 14px rgba(255,60,60,.35)); opacity: calc(.42 * var(--glow-strength)); transform: skewY(-6deg) rotate(-1deg); animation: streakA 12s linear infinite;}
+        .bg::after{filter: blur(7px) drop-shadow(0 0 14px rgba(40,160,255,.35)); opacity: calc(.38 * var(--glow-strength)); transform: skewY(6deg) rotate(1deg); animation: streakB 16s linear infinite reverse;}
+
+        .grid3d{position:fixed; inset:0; z-index:-4; pointer-events:none; transform: perspective(900px) rotateX(58deg) translateY(-10%); background: repeating-linear-gradient(90deg, rgba(255,255,255,.06) 0 1px, transparent 1px 70px), repeating-linear-gradient(0deg, rgba(255,255,255,.06) 0 1px, transparent 1px 70px); box-shadow: 0 0 40px rgba(255,255,255,.05) inset; mask-image: radial-gradient(120% 80% at 50% 20%, #000 40%, transparent 100%); -webkit-mask-image: radial-gradient(120% 80% at 50% 20%, #000 40%, transparent 100%); animation: gridGlow 5s ease-in-out infinite alternate;}
+        @keyframes gridGlow{0%{filter: drop-shadow(0 0 2px rgba(60, 226, 255, 0.25)) drop-shadow(0 0 4px rgba(40,160,255,.25)); opacity:.35;}100%{filter: drop-shadow(0 0 6px rgba(60, 252, 255, 0.35)) drop-shadow(0 0 9px rgba(40,160,255,.35)); opacity:.55;}}
+
+        .particles{position:fixed; inset:0; z-index:-3; pointer-events:none; background: radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.7), transparent 60%), radial-gradient(1.5px 1.5px at 25% 70%, rgba(255,255,255,.65), transparent 60%), radial-gradient(1.8px 1.8px at 40% 40%, rgba(255,255,255,.7), transparent 60%), radial-gradient(1.2px 1.2px at 65% 30%, rgba(255,255,255,.6), transparent 60%), radial-gradient(1.6px 1.6px at 80% 60%, rgba(255,255,255,.65), transparent 60%), radial-gradient(1.4px 1.4px at 55% 80%, rgba(255,255,255,.6), transparent 60%), radial-gradient(1.3px 1.3px at 88% 25%, rgba(255,255,255,.65), transparent 60%); opacity: var(--twinkle); animation: twinkle 6s ease-in-out infinite alternate;}
+        @keyframes twinkle{0%{filter: drop-shadow(0 0 4px rgba(60, 222, 255, 0.18)) drop-shadow(0 0 6px rgba(40,160,255,.18)); opacity: calc(var(--twinkle) * .8);}100%{filter: drop-shadow(0 0 6px rgba(255,60,60,.25)) drop-shadow(0 0 8px rgba(40,160,255,.25)); opacity: var(--twinkle);}}
+
+        .overlay{position:fixed; inset:0; z-index:-2; pointer-events:none; background: radial-gradient(80% 60% at 50% 0%, rgba(0,0,0,.15), rgba(0,0,0,.55) 60%, rgba(0,0,0,.88)), radial-gradient(120% 100% at 50% 120%, rgba(0,0,0,.25), transparent 70%);}
+
+        @keyframes pan1{0%{background-position: 0 0,0 0,0 0, 0% 0%, 0% 0%, 0 0;}100%{background-position: 0 0,0 0,0 0, 200% 200%, 200% 200%, 0 0;}}
+        @keyframes pan2{0%{background-position: 0 0,0 0,0 0, 200% 0%, 0% 200%, 0 0;}100%{background-position: 0 0,0 0,0 0, 0% 200%, 200% 0%, 0 0;}}
+        @keyframes streakA{0%{transform: translateX(-8%) translateY(-3%) skewY(-6deg) rotate(-1deg);}100%{transform: translateX(8%) translateY(3%) skewY(-6deg) rotate(-1deg);}}
+        @keyframes streakB{0%{transform: translateX(8%) translateY(3%) skewY(6deg) rotate(1deg);}100%{transform: translateX(-8%) translateY(-3%) skewY(6deg) rotate(1deg);}}
+
+        /* ======= Top UI ======= */
+        .nav{position:sticky;top:0;z-index:10;backdrop-filter:saturate(140%) blur(6px);background:rgba(0,0,0,.55);border-bottom:1px solid rgba(230,0,0,.25);}
+        .nav__wrap{max-width:1100px;margin:auto;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;}
+        .brand{display:flex;align-items:center;gap:.75rem;font-weight:700;}
+        .brand__dot{width:10px;height:10px;border-radius:50%;background:var(--primary);box-shadow:0 0 10px var(--primary);}
+        .nav a{color:var(--text);text-decoration:none;font-weight:600;font-size:.95rem;padding:.4rem .8rem;border-radius:999px;transition:all var(--speed);}
+        .nav a:hover{color:#fff;background:rgba(230,0,0,.12);box-shadow: var(--shadow);transform:translateY(-1px);}
+        .nav a.active{color:var(--primary);}
+
+        /* Hero */
+        .hero{text-align:center;max-width:1100px;margin:2rem auto;padding:2rem 1rem;}
+        .avatar{width:160px;height:160px;border-radius:50%;border:3px solid var(--primary);box-shadow:0 0 22px rgba(230,0,0,.5), inset 0 0 10px rgba(230,0,0,.35);object-fit:cover;margin-bottom:1rem;transition:transform var(--speed);}
+        .avatar:hover{transform:scale(1.05)}
+        .hero h1{margin:.25rem 0 0;font-size:2rem;text-shadow:0 0 18px rgba(255,255,255,.08);}
+        .subtitle{color:var(--muted);margin:.25rem 0 .75rem;}
+
+        /* Buttons */
+        .cta{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-top:.8rem;}
+        .btn{display:inline-flex;align-items:center;gap:.6rem;border:1px solid rgba(230,0,0,.5);background:linear-gradient(180deg,#1b1b1b,#111);color:#fff;padding:.62rem .95rem;border-radius:999px;text-decoration:none;font-weight:600;transition:all var(--speed);}
+        .btn:hover{transform:translateY(-2px);box-shadow: var(--shadow);background:linear-gradient(180deg,#2a0000,#0f0000);border-color:var(--primary);}
+
+        /* Sections */
+        section{padding:2rem 1rem;}
+        .wrap{max-width:1100px;margin:auto;}
+        .section-title{display:inline-flex;align-items:center;gap:.6rem;font-size:1.35rem;margin-bottom:1rem;border-bottom:2px solid rgba(230,0,0,.55);}
+        .section-title .dot{width:8px;height:8px;border-radius:50%;background:var(--primary);box-shadow:0 0 10px var(--primary);}
+
+        /* Cards */
+        .card{background:linear-gradient(180deg,rgba(19,19,19,.92),rgba(10,10,10,.88));border:1px solid rgba(255,255,255,.06);border-left:3px solid rgba(230,0,0,.75);border-radius:var(--radius);padding:1.1rem 1rem;transition:all var(--speed);backdrop-filter: blur(2px);}
+        .card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--primary);}
+        .grid{display:grid;gap:1rem;}
+        @media(min-width:760px){.grid-2{grid-template-columns:1fr 1fr;}}
+
+        .muted{color:var(--muted);}
+        .clean{margin:.5rem 0 0 1.05rem; padding: 0;}
+        .clean li{margin:.42rem 0;}
+        .k{color:#ffdede;background:rgba(230,0,0,.14);padding:.2rem .5rem;border-radius:6px;font-weight:600;font-size:.85rem;}
+
+        /* ======= Animated Tech Chips ======= */
+        .chips{display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.6rem;}
+        .chip{--c:#fff; position:relative; display:inline-flex; align-items:center; gap:.45rem; padding:.42rem .8rem; border-radius:999px; background: rgba(22,22,22,.8); border:1px solid color-mix(in oklab, var(--c) 55%, transparent); color:#fff; font-size:.85rem; font-weight:600; letter-spacing:.2px; box-shadow: 0 0 0 rgba(0,0,0,0); overflow:hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; isolation:isolate;}
+        .chip::before{content:""; position:absolute; inset:-2px; background: radial-gradient(60% 100% at 50% 0%, color-mix(in oklab, var(--c) 18%, transparent), transparent 70%); filter: blur(8px); z-index:-1; opacity:.6;}
+        .chip::after{content:""; position:absolute; top:0; left:-120%; width:120%; height:100%; background: linear-gradient(120deg, transparent 0%, color-mix(in oklab, var(--c) 25%, transparent) 50%, transparent 100%); opacity:.35; transform:skewX(-20deg); animation: sheen 3.5s ease-in-out infinite;}
+        @keyframes sheen{0%{left:-130%;}60%{left:130%;}100%{left:130%;}}
+        .chip{ animation: pulse 3.2s ease-in-out infinite; }
+        @keyframes pulse{0%,100%{ box-shadow:0 0 0 rgba(0,0,0,0); }50%{ box-shadow:0 0 18px color-mix(in oklab, var(--c) 25%, transparent); }}
+        .chip i{ font-size:.95rem; opacity:.95; }
+
+        .chip[data-tech*="Python"]{ --c:#3c9dff; }
+        .chip[data-tech*="PySpark"]{ --c:#ff6a00; }
+        .chip[data-tech*="ML"]{ --c:#c86bff; }
+        .chip[data-tech*="Power BI"]{ --c:#00e1ff; color:#fff; }
+        .chip[data-tech*="DAX"]{ --c:#ff66cc; color:#fff; }
+        .chip[data-tech*="Excel"]{ --c:#4caf50; color:#fff; }
+        .chip[data-tech*="Hadoop"]{ --c:#29ff7f; color:#fff; }
+        .chip[data-tech*="Spark"]{ --c:#e25822; }
+        .chip[data-tech*="Hive"]{ --c:#ff914d; color:#fff; }
+        .chip[data-tech*="Streamlit"]{ --c:#ff4b4b; }
+        .chip[data-tech*="Azure"]{ --c:#0078d4; }
+        .chip[data-tech*="Azure Data Factory"]{ --c:#00a2ff; }
+        .chip[data-tech*="Azure Blob Storage"]{ --c:#00b8ff; }
+        .chip[data-tech*="Azure SQL"]{ --c:#0aa2c0; }
+        .chip[data-tech*="Scikit-learn"]{ --c:#ff9900; }
+        .chip[data-tech*="Pandas"]{ --c:#4caf50; }
+        .chip[data-tech*="NumPy"]{ --c:#4dabf7; }
+        .chip[data-tech*="Power Query"]{ --c:#a44fff; }
+        .chip[data-tech*="AWS"]{ --c:#ff9900; }
+
+        .chip:hover{transform: translateY(-3px) scale(1.03); border-color: color-mix(in oklab, var(--c) 75%, transparent); box-shadow: 0 0 26px color-mix(in oklab, var(--c) 35%, transparent);}
+        .chip:hover::after{ animation-duration:2.2s; }
+
+        /* Footer */
+        footer{margin-top:2rem;padding:1.25rem 1rem;text-align:center;color:var(--muted);border-top:1px solid rgba(230,0,0,.2);background:rgba(10,10,10,.85);backdrop-filter: blur(2px);}
+
+        /* Contact Form Styles */
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(0, 226, 230, 0.5);
+            background: rgba(22, 22, 22, 0.8);
+            color: var(--text);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color var(--speed), box-shadow var(--speed);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(0, 230, 230, 0.5);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        /* Animated contact button */
+        .contact-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 999px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            background: linear-gradient(180deg, #1b1b1b, #111);
+            border: 1px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        .contact-btn::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 184, 230, 0.4) 50%, transparent 100%);
+            animation: btn-sheen 2.5s infinite linear;
+            opacity: 0.6;
+        }
+        @keyframes btn-sheen {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* General Github Button style */
+        .github-btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .github-btn:hover {
+            transform: scale(1.1);
+            color: #4dd8ff;
+        }
+
+        /* Animated red & blue moving lines */
+        .github-btn span {
+            position: absolute;
+            top: 0; left: 0;
+            right: 0; bottom: 0;
+            pointer-events: none;
+        }
+        .github-btn span::before,
+        .github-btn span::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, rgb(0, 191, 255), blue);
+            animation: move-line 4s linear infinite;
+        }
+        .github-btn span::before { top: 0; }
+        .github-btn span::after { bottom: 0; animation-delay: 2s; }
+        .github-btn::before,
+        .github-btn::after {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, rgb(0, 200, 255), blue);
+            animation: move-line-vert 4s linear infinite;
+        }
+        .github-btn::before { left: 0; }
+        .github-btn::after { right: 0; animation-delay: 2s; }
+        @keyframes move-line {
+            0% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        @keyframes move-line-vert {
+            0% { transform: translateY(-100%); }
+            50% { transform: translateY(100%); }
+            100% { transform: translateY(-100%); }
+        }
+
+        /* New styles for project images */
+        .project-image {
+            width: 100%;
+            height: 200px; /* Adjust height as needed */
+            background-size: cover;
+            background-position: center;
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            object-fit: cover;
+        }
+        
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            transition: all 0.5s ease-in-out;
+            opacity: 1;
+        }
+
+        .card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .card:hover .project-image::before {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="grid3d"></div>
+    <div class="particles"></div>
+    <div class="overlay"></div>
+
+    <nav class="nav">
+        <div class="nav__wrap">
+            <div class="brand">
+                <span class="brand__dot"></span><span>Aryan Verma</span>
+            </div>
+            <div class="nav__links">
+                <a href="#about">About Me</a>
+                <a href="#education">Education</a>
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#certs">Certifications</a>
+                <a href="#interests">Interests</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <img class="avatar" src="https://raw.githubusercontent.com/aryanverma341/portfolio/main/aryanverna_13.jpg" alt="IMG">
+        <h1>Aryan verma</h1>
+        <div class="subtitle">Data Analytics • Big Data • Machine Learning • Power BI • Cloud (Azure, AWS)</div>
+        <div class="cta">
+            <a class="btn" href="tel:+918299180214"><i class="fa-solid fa-phone"></i> +918299180214</a>
+            <a class="btn" href="mailto:aryan.verma341@gmail.com"><i class="fa-solid fa-envelope"></i> Gmail</a>
+            <a class="btn" href="https://www.linkedin.com/in/aryan-verma-0b3b76301/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a class="btn" href="https://github.com/aryanverma341" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a class="btn" href="https://github.com/aryanverma341/portfolio/blob/main/my_resume.pdf" download><i class="fa-solid fa-file-arrow-down"></i> Download Resume</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="wrap">
+            <h2 class="section-title"><span class="dot"></span> About Me</h2>
+            <div class="card">
+                <p style="text-align: justify; line-height: 1.6; margin: 0;">
+                    Dedicated and detail-oriented Data Analytics professional with a strong foundation in Big Data, Machine Learning, and Data Science.
+                    Skilled in Python, SQL, Power BI, and cloud platforms, with hands-on experience in building pipelines, predictive models, and dashboards.
+                    Passionate about turning data into actionable insights and contributing to impactful projects in a dynamic IT environment.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education"><div class="wrap">
+        <h2 class="section-title"><span class="dot"></span> Education</h2>
+        <div class="grid">
+            <div class="card"><strong>CDAC</strong> · <span class="muted">Feb 2025 – Aug 2025</span><br>Post Graduate Diploma in Big Data Analytics — <span class="muted">CDAC Kharghar, Maharashtra</span></div>
+            <div class="card"><strong>H.R.I.T Institute of Technology</strong> · <span class="muted">June 2018</span><br>B.Tech in Civil Engineering — <span class="muted">Lucknow</span></div>
+            <div class="card"><strong>M.R.L.B. Inter College</strong> · <span class="muted">May 2013</span><br>Higher Secondary Certificate — <span class="muted">Barabanki</span></div>
+            <div class="card"><strong>M.R.L.B. Inter College</strong> · <span class="muted">May 2011</span><br>Secondary School Certificate — <span class="muted">Barabanki</span></div>
+        </div>
+    </div></section>
+
+    <section id="projects"><div class="wrap">
+        <h2 class="section-title"><span class="dot"></span> Projects</h2>
+
+        <div class="card">
+            <img class="project-image" src="https://raw.githubusercontent.com/aryanverma341/portfolio/main/Mutual%20Fund%20Forecasting%20System%20Overview.png" alt="IMG">
+            <strong>Mutual Fund NAV Forecasting System</strong> <span class="k">July 2025</span>
+            <div class="chips" role="list">
+                <span class="chip" role="listitem" data-tech="Python"><i class="fa-brands fa-python"></i>Python</span>
+                <span class="chip" role="listitem" data-tech="PySpark"><i class="fa-solid fa-bolt"></i>PySpark</span>
+                <span class="chip" role="listitem" data-tech="ML Models"><i class="fa-solid fa-brain"></i>ML Models</span>
+                <span class="chip" role="listitem" data-tech="Pandas"><i class="fa-solid fa-table"></i>Pandas</span>
+                <span class="chip" role="listitem" data-tech="NumPy"><i class="fa-solid fa-calculator"></i>NumPy</span>
+                <span class="chip" role="listitem" data-tech="Power BI"><i class="fa-solid fa-chart-column"></i>Power BI</span>
+                <span class="chip" role="listitem" data-tech="Streamlit"><i class="fa-solid fa-globe"></i>Streamlit</span>
+                <span class="chip" role="listitem" data-tech="Azure Databricks"><i class="fa-solid fa-cloud"></i>Azure Databricks</span>
+                <span class="chip" role="listitem" data-tech="Azure Data Factory"><i class="fa-solid fa-gears"></i>Azure Data Factory</span>
+                <span class="chip" role="listitem" data-tech="Azure SQL"><i class="fa-solid fa-database"></i>Azure SQL</span>
+                <span class="chip" role="listitem" data-tech="Azure Blob Storage"><i class="fa-solid fa-folder-open"></i>Azure Blob</span>
+            </div>
+            <ul class="clean">
+                <li>Built a cloud-based system to forecast mutual fund NAVs using machine learning. Automated workflows with Airflow and Data Factory, stored data in Azure Blob/SQL with Key Vault, and created Power BI dashboards. Integrated an RAG-based chatbot for investor queries.</li>
+            </ul>
+            <a href="https://github.com/aryanverma341/Mutual-Fund-NAV-Forecasting" target="_blank" rel="noopener noreferrer" class="github-btn"><span></span><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+
+        <div class="card">
+            <img class="project-image" src="https://raw.githubusercontent.com/aryanverma341/portfolio/main/Movie%20Recommendation%20System%20Overview.png" alt="IMG">
+            <strong>Movie Recommender System</strong> <span class="k">June 2025</span>
+            <div class="chips" role="list">
+                <span class="chip" role="listitem" data-tech="Python"><i class="fa-brands fa-python"></i>Python</span>
+                <span class="chip" role="listitem" data-tech="Scikit-learn"><i class="fa-solid fa-brain"></i>Scikit-learn</span>
+                <span class="chip" role="listitem" data-tech="Pandas"><i class="fa-solid fa-table"></i>Pandas</span>
+                <span class="chip" role="listitem" data-tech="NumPy"><i class="fa-solid fa-calculator"></i>NumPy</span>
+            </div>
+            <ul class="clean">
+                <li>Built a content-based movie recommendation system using NLP and cosine similarity with feature engineering to improve relevance</li>
+            </ul>
+            <a href="https://github.com/aryanverma341/Movie-recommended-system" target="_blank" rel="noopener noreferrer" class="github-btn"><span></span><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+
+        <div class="card">
+            <img class="project-image" src="https://raw.githubusercontent.com/aryanverma341/portfolio/main/Credit%20Card%20Financial%20Dashboard%20Overview.png" alt="IMG">
+            <strong>Credit Card Financial Dashboard</strong> <span class="k">May 2025</span>
+            <div class="chips" role="list">
+                <span class="chip" role="listitem" data-tech="Power BI"><i class="fa-solid fa-chart-column"></i>Power BI</span>
+                <span class="chip" role="listitem" data-tech="DAX"><i class="fa-solid fa-gears"></i>DAX</span>
+                <span class="chip" role="listitem" data-tech="Excel"><i class="fa-regular fa-file-excel"></i>Excel</span>
+                <span class="chip" role="listitem" data-tech="Power Query"><i class="fa-solid fa-filter"></i>Power Query</span>
+            </div>
+            <ul class="clean">
+                <li>Created an interactive financial dashboard analyzing customer and transaction KPIs. Streamlined ETL, enabling near real-time insights and actionable reports for stakeholders.</li>
+            </ul>
+            <a href="https://github.com/aryanverma341/Credit-Card-Customer-Data-Analysis" target="_blank" rel="noopener noreferrer" class="github-btn"><span></span><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+    </div></section>
+
+    <section id="skills"><div class="wrap">
+        <h2 class="section-title"><span class="dot"></span> Skills</h2>
+        <div class="grid grid-2">
+            <div class="card"><strong>Languages</strong><div class="muted">Python, SQL (MySQL), R, Bash/Linux</div></div>
+            <div class="card"><strong>Developer Tools</strong><div class="muted">VS Code, PyCharm, Jupyter Notebook, Excel, Power BI, Tableau, GitHub, MySQL Workbench</div></div>
+            <div class="card"><strong>Technologies & Frameworks</strong><div class="muted">PySpark, Scikit‑learn, Pandas, NumPy, Hadoop, Spark, Hive, Streamlit, Azure (ADF, Databricks, Azure SQL, Blob), AWS</div></div>
+            <div class="card"><strong>Relevant Knowledge</strong><div class="muted">Financial Analytics, Risk Modeling, Machine Learning, ETL Pipelines, Data Visualization, KPI Reporting</div></div>
+        </div>
+    </div></section>
+
+    <section id="certs"><div class="wrap">
+        <h2 class="section-title"><span class="dot"></span> Certifications & Training</h2>
+        <div class="grid">
+            <div class="card">NIELIT Certification– Basic Computer Literacy <span class="muted">(Completed Aug 2021)</span></div>
+            <div class="card">PG‑Diploma in Big Data Analytics – CDAC <span class="muted">(Completed Aug 2025)</span></div>
+            <div class="card">Pre‑CAT Preparatory Course for Entrance Exam <span class="muted">(7/2024)</span></div>
+        </div>
+    </div></section>
+
+    <section id="interests"><div class="wrap">
+        <h2 class="section-title"><span class="dot"></span> Interests</h2>
+        <div class="grid">
+            <div class="card">Exploring AI tools and tech podcasts.</div>
+            <div class="card">Bodybuilding(Two-time Mr. Lucknow Titleholder )</div>
+            <div class="card">NCR-level Champion in Mini Militia (Esports)</div>
+            <div class="card">Hobbies: Trekking, Traveling, Fitness</div>
+
+        </div>
+    </div></section>
+
+    <footer>© 2025 Aryan Verma · Portfolio</footer>
+
+    <script>
+        // Active link highlight
+        const sections = [...document.querySelectorAll('section')];
+        const links = [...document.querySelectorAll('.nav__links a')];
+        const map = new Map(sections.map(s => [s.id, links.find(a => a.getAttribute('href') === '#' + s.id)]));
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const link = map.get(entry.target.id);
+                if(entry.isIntersecting){
+                    links.forEach(a => a.classList.remove('active'));
+                    link && link.classList.add('active');
+                }
+            });
+        },{
+            rootMargin:'-40% 0px -55% 0px',
+            threshold:0
+        });
+        sections.forEach(s => observer.observe(s));
+    </script>
+</body>
+</html>
